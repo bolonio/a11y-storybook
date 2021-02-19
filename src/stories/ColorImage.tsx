@@ -1,10 +1,7 @@
 import React from "react"
 import Image from "./ColorImage.jpeg"
 
-export const ColorImage: React.FC = () => (
-  <img
-    src={Image}
-    alt="A bunch of chocolate candies with different colors"
-    width="500px"
-  />
-)
+export const ColorImage: React.FC<{ alt?: string; role?: string }> = ({
+  alt,
+  role,
+}) => <img src={Image} role={role} alt={alt} width="600px" />

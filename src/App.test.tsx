@@ -1,9 +1,12 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import React from "react"
+import App from "./App"
+import { render } from "@testing-library/react"
+import { axe, toHaveNoViolations } from "jest-axe"
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+expect.extend(toHaveNoViolations)
+
+it("should not have any accessibility violations", async () => {
+  const { container } = render(<App />)
+  const results = await axe(container)
+  expect(results).toHaveNoViolations()
+})
